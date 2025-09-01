@@ -1,37 +1,41 @@
-# --- 1. Build stage ---
-FROM node:20-alpine AS builder
-
+# Base
+FROM node:20-alpine AS base
 WORKDIR /app
+# Prisma engines often need openssl
+RUN apk add --no-cache openssl
 
-# Copy package files and install dependencies
+# ---------------- Deps (shared) ----------------
+FROM base AS deps
 COPY package.json package-lock.json* ./
-RUN npm install --frozen-lockfile
+RUN npm ci
 
-# Copy source code
+# ---------------- Dev (hot reload) ----------------
+FROM base AS dev
+ENV NODE_ENV=development
+COPY --from=deps /app/node_modules ./node_modules
+COPY package.json ./
+# Source code will be bind-mounted by docker-compose.dev.yml
+EXPOSE 3000
+CMD ["npm", "run", "dev"]
+
+# ---------------- Build (for prod) ----------------
+FROM base AS build
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Build the Next.js app
+RUN npx prisma generate || true
 RUN npm run build
 
-
-# --- 2. Production stage ---
-FROM node:20-alpine AS runner
-
-WORKDIR /app
-
-# Set NODE_ENV for production
+# ---------------- Prod (runtime) ----------------
+FROM base AS prod
 ENV NODE_ENV=production
-
-# Install only production dependencies
 COPY package.json package-lock.json* ./
-RUN npm install --omit=dev --frozen-lockfile
-
-# Copy built files from builder stage
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/next.config.ts ./next.config.ts
-
+RUN npm ci --omit=dev
+COPY --from=build /app/.next ./.next
+COPY --from=build /app/public ./public
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/next.config.* ./
+# If you want to run migrations at container start later, copy prisma dir:
+# COPY --from=build /app/prisma ./prisma
 EXPOSE 3000
-
 CMD ["npm", "start"]

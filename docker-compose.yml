@@ -1,16 +1,7 @@
 version: '3.9'
 services:
-  web:
-    build: .
-    ports:
-      - '3000:3000'
-    environment:
-      DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
-    depends_on:
-      - postgres
-    networks:
-      - prisma-network
   postgres:
+    container_name: postgres_db
     image: postgres:15
     restart: always
     environment:
@@ -19,8 +10,6 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - '5432:5432'
-    networks:
-      - prisma-network
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U postgres -d postgres']
       interval: 5s
@@ -33,9 +22,6 @@ services:
       options:
         max-size: '10m'
         max-file: '3'
-
-networks:
-  prisma-network:
 
 volumes:
   postgres_data:

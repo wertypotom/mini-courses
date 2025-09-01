@@ -8,8 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --write .",
-    "docker:up": "docker compose up --build",
-    "prisma:seed": "tsx prisma/seed.ts"
+    "docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.15.0",
