@@ -1,6 +1,7 @@
 services:
   web:
     container_name: client
+    command: sh -lc "./docker/dev-entry.sh"
     build:
       context: .
       target: dev
