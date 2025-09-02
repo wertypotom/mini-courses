@@ -1,13 +1,13 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { Button } from '@/shared/ui/button'
 import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
   CardFooter,
-} from '@/components/ui/card'
+} from '@/shared/ui/card'
 import { CourseListItem } from '../model/types'
 
 type TCourseItemProps = {

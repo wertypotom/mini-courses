@@ -7,14 +7,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+} from '@/shared/ui/form'
+import { Input } from '@/shared/ui/input'
+import { Textarea } from '@/shared/ui/textarea'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from '@/components/ui/button'
-import { cn } from '@/shared/utils'
+import { Button } from '@/shared/ui/button'
+import { cn } from '@/shared/lib/utils'
 import { createCourseAction } from '../actions'
 
 const createCourseFormSchema = z.object({
@@ -59,7 +59,7 @@ export function CreateCourseForm({
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder='name...' {...field} />
+                <Input placeholder='Course name' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -72,7 +72,7 @@ export function CreateCourseForm({
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Textarea placeholder='description...' {...field} />
+                <Textarea placeholder='Course description' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

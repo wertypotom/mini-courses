@@ -1,4 +1,4 @@
-import { dbClient } from '@/shared/dbClient'
+import { dbClient } from '@/shared/lib/dbClient'
 import { cache } from 'react'
 import {
   CourseListItem,
