@@ -38,4 +38,4 @@ COPY --from=build /app/next.config.* ./
 # If you want to run migrations at container start later, copy prisma dir:
 # COPY --from=build /app/prisma ./prisma
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["sh", "-lc", "npm start -- -p ${PORT:-3000} -H 0.0.0.0"]
