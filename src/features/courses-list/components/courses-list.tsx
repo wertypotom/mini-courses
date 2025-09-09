@@ -8,7 +8,8 @@ type TCoursesListProps = {
 };
 
 async function getCourses(): Promise<CourseListItem[]> {
-  const res = await fetch("/api/courses");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/courses`);
+
   if (!res.ok) throw new Error("Failed to load courses");
   const data = await res.json();
   return data.courses;
