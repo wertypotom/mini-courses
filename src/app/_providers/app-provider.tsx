@@ -7,7 +7,12 @@ import React from "react";
 export function AppProvider({ children }: { children: React.ReactNode }) {
   return (
     <ComposeChildren>
-      <ThemeProvider />
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      />
       {children}
     </ComposeChildren>
   );
