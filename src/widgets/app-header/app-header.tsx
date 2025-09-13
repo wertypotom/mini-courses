@@ -4,12 +4,18 @@ import { Logo } from "./_ui/logo-icon";
 import { MainNav } from "./_ui/main-nav";
 import { Profile } from "./_ui/profile";
 
-export function AppHeader() {
+type TAppHeaderProps = {
+  variant: "private" | "public" | "auth";
+};
+
+export function AppHeader({ variant }: TAppHeaderProps) {
+  const isAuthenticated = variant !== "auth";
+
   return (
     <Layout
       logo={<Logo />}
       nav={<MainNav />}
-      profile={<Profile />}
+      profile={isAuthenticated && <Profile />}
       actions={<ToggleTheme />}
     />
   );
