@@ -6,8 +6,7 @@ services:
       context: .
       target: dev
     ports:
-      - '3000:3000'
-    # Bind-mount your source code into the container for Fast Refresh
+      - "3000:3000"
     volumes:
       - .:/app
       # Keep container's node_modules from being shadowed by the bind mount
@@ -16,7 +15,7 @@ services:
       # Make file watching reliable on macOS/Windows
       - WATCHPACK_POLLING=true
       - CHOKIDAR_USEPOLLING=true
-      # Example: Next.js + Prisma needs DB URL inside the container
+
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres?schema=public
     depends_on:
       - postgres
