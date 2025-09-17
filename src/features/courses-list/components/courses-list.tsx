@@ -2,13 +2,14 @@ import { CourseItem } from "../ui/course-item";
 import { coursesRepository } from "../repository/coursesRepository";
 import { revalidatePath } from "next/cache";
 import { CourseListItem } from "../model/types";
+import { privateConfig } from "@/shared/config/private";
 
 type TCoursesListProps = {
   pathToRevalidate: string;
 };
 
 async function getCourses(): Promise<CourseListItem[]> {
-  const res = await fetch(`${process.env.BASE_URL}/api/courses`);
+  const res = await fetch(`${privateConfig.BASE_URL}/api/courses`);
 
   if (!res.ok) throw new Error("Failed to load courses");
   const data = await res.json();

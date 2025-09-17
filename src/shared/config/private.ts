@@ -1,6 +1,8 @@
 import { z } from "zod";
 
 const privateConfigSchema = z.object({
+  BASE_URL: z.string(),
+
   GITHUB_ID: z.string().optional(),
   GITHUB_SECRET: z.string().optional(),
 });
