@@ -13,10 +13,8 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <html>
-      <body>
-        <NextError statusCode={0} />
-      </body>
-    </html>
+    <>
+      <NextError statusCode={0} />
+    </>
   );
 }
