@@ -17,6 +17,9 @@ services:
       - key: NODE_ENV
         value: production
 
+      - key: BASE_URL
+        value: https://mini-courses.onrender.com
+
       - key: NEXTAUTH_URL
         value: https://mini-courses.onrender.com
 
@@ -44,4 +47,4 @@ services:
         sync: false
 
       - key: TEST_ENV_BASE_URL
-        value: https://mini-courses-1.onrender.com
+        value: https://mini-courses.onrender.com
