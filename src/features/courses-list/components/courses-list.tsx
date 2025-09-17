@@ -9,7 +9,6 @@ type TCoursesListProps = {
 };
 
 async function getCourses(): Promise<CourseListItem[]> {
-  console.log("privateConfig.BASE_URL 💥", privateConfig.BASE_URL);
   const res = await fetch(`${privateConfig.BASE_URL}/api/courses`);
 
   if (!res.ok) throw new Error("Failed to load courses");
