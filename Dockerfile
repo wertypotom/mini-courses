@@ -35,7 +35,6 @@ COPY --from=build /app/.next ./.next
 COPY --from=build /app/public ./public
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/next.config.* ./
-# If you want to run migrations at container start later, copy prisma dir:
-# COPY --from=build /app/prisma ./prisma
+COPY --from=build /app/prisma ./prisma  # ← UNCOMMENT THIS LINE
 EXPOSE 3000
 CMD ["sh","-lc","npx prisma migrate deploy && npm start -- -p ${PORT:-3000} -H 0.0.0.0"]
