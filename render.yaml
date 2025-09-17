@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: mini-courses-1
+    name: mini-courses
     runtime: docker
     repo: https://github.com/wertypotom/mini-courses
     branch: main
@@ -18,7 +18,7 @@ services:
         value: production
 
       - key: NEXTAUTH_URL
-        value: https://mini-courses-1.onrender.com
+        value: https://mini-courses.onrender.com
 
       - key: NEXTAUTH_SECRET
         generateValue: true
