@@ -1,23 +1,15 @@
+export const dynamic = "force-dynamic";
+
 import { CourseItem } from "../ui/course-item";
 import { coursesRepository } from "../repository/coursesRepository";
 import { revalidatePath } from "next/cache";
-import { CourseListItem } from "../model/types";
-import { privateConfig } from "@/shared/config/private";
 
 type TCoursesListProps = {
   pathToRevalidate: string;
 };
 
-async function getCourses(): Promise<CourseListItem[]> {
-  const res = await fetch(`${privateConfig.BASE_URL}/api/courses`);
-
-  if (!res.ok) throw new Error("Failed to load courses");
-  const data = await res.json();
-  return data.courses;
-}
-
 export async function CoursesList({ pathToRevalidate }: TCoursesListProps) {
-  const coursesList = await getCourses();
+  const coursesList = await coursesRepository.getCoursesList();
 
   const handleDeleteAction = async (courseId: string) => {
     "use server";
