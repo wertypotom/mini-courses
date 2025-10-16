@@ -9,6 +9,11 @@ import { Provider } from "next-auth/providers/index";
 
 export const nextAuthConfig: AuthOptions = {
   adapter: PrismaAdapter(dbClient) as Provider["options"],
+  pages: {
+    signIn: "/auth/sign-in",
+    newUser: "/auth/new-user",
+    verifyRequest: "/auth/verify-request",
+  },
   providers: compact([
     EmailProvider({
       server: {
