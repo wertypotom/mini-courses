@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { CourseItem } from "../ui/course-item";
 import { coursesRepository } from "../repository/coursesRepository";
 import { revalidatePath } from "next/cache";
