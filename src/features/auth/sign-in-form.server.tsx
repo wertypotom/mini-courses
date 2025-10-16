@@ -1,9 +1,10 @@
+"use server";
+
 import { getProviders } from "next-auth/react";
 import { cn } from "@/shared/lib/utils";
 import { EmailSignInForm } from "./_ui/email-sign-in-form";
 import { Divider } from "./_ui/divider";
 import { ProviderButton } from "./_ui/provider-button";
-import { env } from "@/shared/config";
 
 export async function SignInForm({ className }: { className?: string }) {
   const providers = await getProviders();
@@ -15,9 +16,9 @@ export async function SignInForm({ className }: { className?: string }) {
     <div className={cn("grid gap-6", className)}>
       <EmailSignInForm />
       <Divider />
-      {/* {oauthProviders.map((provider) => (
+      {oauthProviders.map((provider) => (
         <ProviderButton key={provider.id} provider={provider} />
-      ))} */}
+      ))}
     </div>
   );
 }
