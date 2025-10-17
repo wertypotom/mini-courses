@@ -6,7 +6,7 @@ export const ROLES: Record<Role, Role> = {
   USER: "USER",
 };
 
-export type TUser = {
+export type UserEntity = {
   id: UserId;
   email: string;
   role: Role;
@@ -15,8 +15,8 @@ export type TUser = {
   image?: string | null;
 };
 
-export type TSession = {
-  user: Omit<TUser, "emailVerified">;
+export type SessionEntity = {
+  user: Omit<UserEntity, "emailVerified">;
   expires: string;
 };
 

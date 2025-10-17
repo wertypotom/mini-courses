@@ -16,8 +16,9 @@ datasource db {
 model User {
   id            String          @id @default(cuid())
   name          String?
-  email         String?         @unique
+  email         String          @unique
   emailVerified DateTime?
+  role          ROLE            @default(USER)
   image         String?
   accounts      Account[]
   sessions      Session[]
@@ -84,4 +85,9 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, credentialID])
+}
+
+enum ROLE {
+  ADMIN
+  USER
 }

@@ -1,9 +1,9 @@
 import NextAuth from "next-auth";
-import { TSession, TUser } from "./_domain/types";
+import { SessionEntity, UserEntity } from "./_domain/types";
 
 declare module "next-auth" {
   interface Session {
-    user: TSession["user"];
+    user: SessionEntity["user"];
   }
-  interface User extends TUser {}
+  interface User extends UserEntity {}
 }
