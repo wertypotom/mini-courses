@@ -17,6 +17,18 @@ export const nextAuthConfig: AuthOptions = {
       return createUserUseCase.exec(user);
     },
   } as AuthOptions["adapter"],
+  callbacks: {
+    session: async ({ session, user }) => {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: user.id,
+          role: user.role,
+        },
+      };
+    },
+  },
   pages: {
     signIn: "/auth/sign-in",
     newUser: "/auth/new-user",
