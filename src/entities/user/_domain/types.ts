@@ -22,7 +22,7 @@ export type SessionEntity = {
 
 // Projetions
 
-export type TProfile = {
+export type ProfileEntity = {
   email: string;
   name?: string | null;
   image?: string | null;

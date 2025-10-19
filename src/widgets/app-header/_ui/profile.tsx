@@ -12,12 +12,11 @@ import {
 import { LogOut, User } from "lucide-react";
 import { Button } from "@/shared/ui/button";
 import Link from "next/link";
-import { Avatar, AvatarFallback } from "@/shared/ui/avatar";
 import { Skeleton } from "@/shared/ui/skeleton";
 import { useSession } from "next-auth/react";
 import { useSignOut } from "@/features/auth/use-sign-out";
 import { SignInButton } from "@/features/auth/sign-in-button";
-// import { ProfileAvatar, getProfileDisplayName } from "@/entities/user/profile";
+import { getProfileDisplayName, ProfileAvatar } from "@/entities/user/profile";
 
 export function Profile() {
   const session = useSession();
@@ -40,16 +39,14 @@ export function Profile() {
           variant="ghost"
           className="p-px rounded-full self-center h-8 w-8"
         >
-          <Avatar className="w-8 h-8">
-            <AvatarFallback>AC</AvatarFallback>
-          </Avatar>
+          <ProfileAvatar profile={user} className="w-8 h-8" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 mr-2 ">
         <DropdownMenuLabel>
           <p>My account</p>
           <p className="text-xs text-muted-foreground overflow-hidden text-ellipsis">
-            {/* {user ? getProfileDisplayName(user) : undefined} */} Andrey
+            {user ? getProfileDisplayName(user) : undefined}
           </p>
         </DropdownMenuLabel>
         <DropdownMenuGroup></DropdownMenuGroup>
