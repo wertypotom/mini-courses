@@ -1,0 +1,10 @@
+---
+description: Before coding, create a concise plan covering requirements, inputs/outputs, constraints, risks, and milestones. Present this plan to me for approval
+globs: *
+alwaysApply: true
+---
+
+# Your rule content
+
+- The rule description goes here
+- You can use markdown but don't have to
